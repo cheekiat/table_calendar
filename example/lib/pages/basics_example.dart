@@ -15,6 +15,7 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+  Map<String, String> maps = Map();
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,18 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
         title: Text('TableCalendar - Basics'),
       ),
       body: TableCalendar(
-        firstDay: kFirstDay,
+        firstDay: DateTime.now(),
         lastDay: kLastDay,
         focusedDay: _focusedDay,
+        headerStyle: HeaderStyle(
+          formatButtonVisible: false,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w900,
+          ),
+        ),
         calendarFormat: _calendarFormat,
         selectedDayPredicate: (day) {
           // Use `selectedDayPredicate` to determine which day is currently selected.
@@ -44,6 +54,13 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
             });
           }
         },
+        onDisabledDayTapped: (day) {},
+        enabledDayPredicate: (day) {
+          if (maps['${day.day}-5-2023'] != null) {
+            return false;
+          }
+          return true;
+        },
         onFormatChanged: (format) {
           if (_calendarFormat != format) {
             // Call `setState()` when updating calendar format
@@ -58,5 +75,10 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    maps['11-5-2023'] = '11-5-2023';
   }
 }
