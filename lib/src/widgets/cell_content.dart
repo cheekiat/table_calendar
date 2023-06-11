@@ -72,7 +72,10 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: calendarStyle.disabledDecoration,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+            ),
             alignment: alignment,
             child: Text(text, style: calendarStyle.disabledTextStyle),
           );
@@ -82,7 +85,10 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: calendarStyle.selectedDecoration,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [Color(0xff962e84), Color(0xffd83578), Color(0xffd83578)], ),
+            ),
             alignment: alignment,
             child: Text(text, style: calendarStyle.selectedTextStyle),
           );
@@ -93,7 +99,10 @@ class CellContent extends StatelessWidget {
                 duration: duration,
                 margin: margin,
                 padding: padding,
-                decoration: calendarStyle.rangeStartDecoration,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+                ),
                 alignment: alignment,
                 child: Text(text, style: calendarStyle.rangeStartTextStyle),
               );
@@ -103,7 +112,10 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: calendarStyle.rangeEndDecoration,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+            ),
             alignment: alignment,
             child: Text(text, style: calendarStyle.rangeEndTextStyle),
           );
@@ -113,9 +125,12 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: calendarStyle.todayDecoration,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+            ),
             alignment: alignment,
-            child: Text(text, style: calendarStyle.todayTextStyle),
+            child: Text(text, style: calendarStyle.defaultTextStyle),
           );
     } else if (isHoliday) {
       cell = calendarBuilders.holidayBuilder?.call(context, day, focusedDay) ??
@@ -123,7 +138,10 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: calendarStyle.holidayDecoration,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+            ),
             alignment: alignment,
             child: Text(text, style: calendarStyle.holidayTextStyle),
           );
@@ -134,7 +152,10 @@ class CellContent extends StatelessWidget {
                 duration: duration,
                 margin: margin,
                 padding: padding,
-                decoration: calendarStyle.withinRangeDecoration,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+                ),
                 alignment: alignment,
                 child: Text(text, style: calendarStyle.withinRangeTextStyle),
               );
@@ -144,7 +165,10 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: calendarStyle.outsideDecoration,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+            ),
             alignment: alignment,
             child: Text(text, style: calendarStyle.outsideTextStyle),
           );
@@ -154,9 +178,10 @@ class CellContent extends StatelessWidget {
             duration: duration,
             margin: margin,
             padding: padding,
-            decoration: isWeekend
-                ? calendarStyle.weekendDecoration
-                : calendarStyle.defaultDecoration,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Color(0x3d50a398), width: 0.50, ),
+            ),
             alignment: alignment,
             child: Text(
               text,

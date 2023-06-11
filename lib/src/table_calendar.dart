@@ -3,6 +3,7 @@
 
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gesture_detector/simple_gesture_detector.dart';
@@ -646,37 +647,60 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
               widget.calendarBuilders.markerBuilder?.call(context, day, events);
 
           if (events.isNotEmpty && markerWidget == null) {
-            final center = constraints.maxHeight / 2;
-
-            final markerSize = widget.calendarStyle.markerSize ??
-                (shorterSide - widget.calendarStyle.cellMargin.vertical) *
-                    widget.calendarStyle.markerSizeScale;
-
-            final markerAutoAlignmentTop = center +
-                (shorterSide - widget.calendarStyle.cellMargin.vertical) / 2 -
-                (markerSize * widget.calendarStyle.markersAnchor);
-
-            markerWidget = PositionedDirectional(
-              top: widget.calendarStyle.markersAutoAligned
-                  ? markerAutoAlignmentTop
-                  : widget.calendarStyle.markersOffset.top,
-              bottom: widget.calendarStyle.markersAutoAligned
-                  ? null
-                  : widget.calendarStyle.markersOffset.bottom,
-              start: widget.calendarStyle.markersAutoAligned
-                  ? null
-                  : widget.calendarStyle.markersOffset.start,
-              end: widget.calendarStyle.markersAutoAligned
-                  ? null
-                  : widget.calendarStyle.markersOffset.end,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: events
-                    .take(widget.calendarStyle.markersMaxCount)
-                    .map((event) => _buildSingleMarker(day, event, markerSize))
-                    .toList(),
+            markerWidget = Positioned(
+              right: 9,
+              top: 9,
+              child: Container(
+                width: 9,
+                height: 9,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xff6edd8a),
+                ),
+                child: Center(
+                  child: Text(
+                    "${events.length}",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 6,
+                      fontFamily: "Figtree",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
               ),
             );
+            // final center = constraints.maxHeight / 2;
+            //
+            // final markerSize = widget.calendarStyle.markerSize ??
+            //     (shorterSide - widget.calendarStyle.cellMargin.vertical) *
+            //         widget.calendarStyle.markerSizeScale;
+            //
+            // final markerAutoAlignmentTop = center +
+            //     (shorterSide - widget.calendarStyle.cellMargin.vertical) / 2 -
+            //     (markerSize * widget.calendarStyle.markersAnchor);
+            //
+            // markerWidget = PositionedDirectional(
+            //   top: widget.calendarStyle.markersAutoAligned
+            //       ? markerAutoAlignmentTop
+            //       : widget.calendarStyle.markersOffset.top,
+            //   bottom: widget.calendarStyle.markersAutoAligned
+            //       ? null
+            //       : widget.calendarStyle.markersOffset.bottom,
+            //   start: widget.calendarStyle.markersAutoAligned
+            //       ? null
+            //       : widget.calendarStyle.markersOffset.start,
+            //   end: widget.calendarStyle.markersAutoAligned
+            //       ? null
+            //       : widget.calendarStyle.markersOffset.end,
+            //   child: Row(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: events
+            //         .take(widget.calendarStyle.markersMaxCount)
+            //         .map((event) => _buildSingleMarker(day, event, markerSize))
+            //         .toList(),
+            //   ),
+            // );
           }
 
           if (markerWidget != null) {
